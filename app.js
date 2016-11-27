@@ -8,7 +8,11 @@ let printData = (name, public_repos, followers) => {
   return `${name} owns ${public_repos} repo(s) and has ${followers} follower(s)`
 }
 
-const username = 'rizafahmi'
+let printError = (error) => {
+  console.log(error.message)
+}
+
+const username = 'rizafahmi22'
 // [x] Connect to the API with specific queries (https://api.github.com/users/username)
 const options = {
   hostname: `api.github.com`,
@@ -20,7 +24,6 @@ const options = {
   }
 }
 let request = https.request(options, (response) => {
-  console.log(response.statusCode)
   // [x] Read the data
   let body = ""
   response.on('data', (data) => {
@@ -28,17 +31,20 @@ let request = https.request(options, (response) => {
   })
 
   response.on('end', () => {
-    // [x] Parse the data
-    let profile = JSON.parse(body)
-    // [x] Print the data out
-    // prints out name, public_repos, followers
-    console.log(printData(profile.name, profile.public_repos, profile.followers))
+    if (response.statusCode === 200) {
+      // [x] Parse the data
+      let profile = JSON.parse(body)
+      // [x] Print the data out
+      // prints out name, public_repos, followers
+      console.log(printData(profile.name, profile.public_repos, profile.followers))
+
+    } else {
+      printError({message: `Profile with username '${username}' not found. (${response.statusCode})` })
+    }
   })
 
 })
 
 request.end()
 
-request.on('error', (error) => {
-  console.error(error)
-})
+request.on('error', printError)
