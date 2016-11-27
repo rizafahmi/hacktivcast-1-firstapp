@@ -24,11 +24,11 @@ let request = https.request(options, (response) => {
   })
 
   response.on('end', () => {
-    console.log(body)
-    console.log(typeof body)
+    // [x] Parse the data
+    let profile = JSON.parse(body)
+    console.log(profile)
+    // TODO: Print the data out
   })
-  // TODO: Parse the data
-  // TODO: Print the data out
 
 })
 
