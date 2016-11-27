@@ -7,7 +7,7 @@ const https = require('https')
 const username = 'rizafahmi'
 // Connect to the API with specific queries (https://api.github.com/users/username)
 const options = {
-  hostname: `api.github.com`,
+  hostname: `api.githb.com`,
   port: 443,
   path: `/users/${username}`,
   method: 'GET',
@@ -16,15 +16,15 @@ const options = {
   }
 }
 let request = https.request(options, (response) => {
-    console.log(response.statusCode)
-    // TODO: Read the data
-    // TODO: Parse the data
-    // TODO: Print the data out
+  console.log(response.statusCode)
+  // TODO: Read the data
+  // TODO: Parse the data
+  // TODO: Print the data out
 
 })
 
 request.end()
 
-request.on('error', (e) => {
-  console.error(e)
+request.on('error', (error) => {
+  console.error(error)
 })
