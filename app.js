@@ -5,4 +5,8 @@
 
 const profile = require('./profile.js')
 
-profile.get('rizafahmi')
+const users = ['rizafahmi', 'mhaidarh', 'rubicode']
+users.map((user) => {
+  return profile.get(user)
+})
+// or equal to this beautiful one line: `users.map(profile.get)`
