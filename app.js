@@ -5,8 +5,5 @@
 
 const profile = require('./profile.js')
 
-const users = ['rizafahmi', 'mhaidarh', 'rubicode']
-users.map((user) => {
-  return profile.get(user)
-})
-// or equal to this beautiful one line: `users.map(profile.get)`
+const users = process.argv.slice(2)
+users.map(profile.get)
